@@ -8,9 +8,9 @@ node {
       stage('deploy') {
         withCredentials([azureServicePrincipal('azure_service_principal')]) {
           // Log in to Azure
-//            az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID --verbose
           sh '''
-            az account set -s $AZURE_SUBSCRIPTION_ID --verbose
+            az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
+            az account set -s $AZURE_SUBSCRIPTION_ID
           '''  
           // Set default resource group name and service name. Replace <resource group name> and <service name> with the right values
           sh 'az config set defaults.group=jenkins-springapp-test-rg'
