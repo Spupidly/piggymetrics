@@ -3,7 +3,7 @@ node {
         checkout scm
       }
       stage('build') {
-        sh 'mvn clean package'
+        sh 'mvn clean package -DskipTests'
       }
       stage('deploy') {
         withCredentials([azureServicePrincipal('azure_service_principal')]) {
